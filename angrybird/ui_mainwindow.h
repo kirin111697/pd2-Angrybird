@@ -28,6 +28,7 @@ public:
     QGraphicsView *graphicsView;
     QLabel *slingShot1;
     QLabel *slingShot2;
+    QGraphicsView *graphicsView_2;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -45,7 +46,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         graphicsView = new QGraphicsView(centralWidget);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
-        graphicsView->setGeometry(QRect(0, -1, 1024, 681));
+        graphicsView->setGeometry(QRect(0, 0, 1024, 680));
         sizePolicy.setHeightForWidth(graphicsView->sizePolicy().hasHeightForWidth());
         graphicsView->setSizePolicy(sizePolicy);
         graphicsView->setMaximumSize(QSize(1280, 720));
@@ -54,15 +55,20 @@ public:
         graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         slingShot1 = new QLabel(centralWidget);
         slingShot1->setObjectName(QStringLiteral("slingShot1"));
-        slingShot1->setGeometry(QRect(180, 382, 39, 199));
+        slingShot1->setGeometry(QRect(140, 443, 31, 160));
         sizePolicy.setHeightForWidth(slingShot1->sizePolicy().hasHeightForWidth());
         slingShot1->setSizePolicy(sizePolicy);
-        slingShot1->setStyleSheet(QStringLiteral("background-image: url(:/new/bg/Angry Birds Seasons/Angry Birds Seasons/SLING_SHOT_01_BACK.png);"));
+        slingShot1->setStyleSheet(QStringLiteral("background-image: url(:/new/bg/SLING_SHOT_01_BACK_SMALL.png);"));
         slingShot2 = new QLabel(centralWidget);
         slingShot2->setObjectName(QStringLiteral("slingShot2"));
-        slingShot2->setGeometry(QRect(152, 377, 41, 121));
-        slingShot2->setStyleSheet(QStringLiteral("background-image: url(:/new/bg/Angry Birds Seasons/Angry Birds Seasons/SLING_SHOT_01_FRONT.png);"));
+        slingShot2->setGeometry(QRect(118, 439, 31, 98));
+        slingShot2->setStyleSheet(QStringLiteral("background-image: url(:/new/bg/SLING_SHOT_01_FRONT_SMALL.png);"));
+        graphicsView_2 = new QGraphicsView(centralWidget);
+        graphicsView_2->setObjectName(QStringLiteral("graphicsView_2"));
+        graphicsView_2->setGeometry(QRect(0, 0, 1024, 680));
+        graphicsView_2->setStyleSheet(QStringLiteral(""));
         MainWindow->setCentralWidget(centralWidget);
+        graphicsView_2->raise();
         slingShot1->raise();
         graphicsView->raise();
         slingShot2->raise();

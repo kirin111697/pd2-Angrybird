@@ -27,6 +27,7 @@ public:
     void showEvent(QShowEvent *);
     bool eventFilter(QObject *,QEvent *event);
     void closeEvent(QCloseEvent *);
+    void startGame();
 
 signals:
     void quitGame();
@@ -43,6 +44,7 @@ private:
     redBird *itemnow;
     QPointF startPos;
     QPointF endPos;
+    bool canpress;
 };
 
 #endif // MAINWINDOW_H

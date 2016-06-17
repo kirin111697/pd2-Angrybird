@@ -16,14 +16,17 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     gameitem.cpp \
     redbird.cpp \
-    ground.cpp
+    ground.cpp \
+    checkpage.cpp
 
 HEADERS  += mainwindow.h \
     gameitem.h \
     redbird.h \
-    ground.h
+    ground.h \
+    checkpage.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    checkpage.ui
 
 LIBS += -L. -lBox2D
 

@@ -52,17 +52,21 @@ SOURCES       = main.cpp \
 		mainwindow.cpp \
 		gameitem.cpp \
 		redbird.cpp \
-		ground.cpp qrc_resource.cpp \
+		ground.cpp \
+		checkpage.cpp qrc_resource.cpp \
 		moc_mainwindow.cpp \
-		moc_gameitem.cpp
+		moc_gameitem.cpp \
+		moc_checkpage.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		gameitem.o \
 		redbird.o \
 		ground.o \
+		checkpage.o \
 		qrc_resource.o \
 		moc_mainwindow.o \
-		moc_gameitem.o
+		moc_gameitem.o \
+		moc_checkpage.o
 DIST          = /Applications/QT/5.6/clang_64/mkspecs/features/spec_pre.prf \
 		/Applications/QT/5.6/clang_64/mkspecs/qdevice.pri \
 		/Applications/QT/5.6/clang_64/mkspecs/features/device_config.prf \
@@ -207,11 +211,13 @@ DIST          = /Applications/QT/5.6/clang_64/mkspecs/features/spec_pre.prf \
 		angrybird.pro mainwindow.h \
 		gameitem.h \
 		redbird.h \
-		ground.h main.cpp \
+		ground.h \
+		checkpage.h main.cpp \
 		mainwindow.cpp \
 		gameitem.cpp \
 		redbird.cpp \
-		ground.cpp
+		ground.cpp \
+		checkpage.cpp
 QMAKE_TARGET  = angrybird
 DESTDIR       = 
 TARGET        = angrybird.app/Contents/MacOS/angrybird
@@ -220,7 +226,7 @@ TARGET        = angrybird.app/Contents/MacOS/angrybird
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_checkpage.h $(OBJECTS)  
 	@test -d angrybird.app/Contents/MacOS/ || mkdir -p angrybird.app/Contents/MacOS/
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
@@ -547,9 +553,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents resource.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h gameitem.h redbird.h ground.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp gameitem.cpp redbird.cpp ground.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h gameitem.h redbird.h ground.h checkpage.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp gameitem.cpp redbird.cpp ground.cpp checkpage.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.ui checkpage.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -576,12 +582,14 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resource.cpp
 qrc_resource.cpp: resource.qrc \
 		HALLOWEEN2011_GROUND.png \
-		Angry_Bird_red_small.png
+		SLING_SHOT_01_FRONT_SMALL.png \
+		Angry_Bird_red_small.png \
+		SLING_SHOT_01_BACK_SMALL.png
 	/Applications/QT/5.6/clang_64/bin/rcc -name resource resource.qrc -o qrc_resource.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_gameitem.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_gameitem.cpp moc_checkpage.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_gameitem.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_gameitem.cpp moc_checkpage.cpp
 moc_mainwindow.cpp: /Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
@@ -693,13 +701,82 @@ moc_gameitem.cpp: Box2D/Box2D.h \
 		gameitem.h
 	/Applications/QT/5.6/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Applications/QT/5.6/clang_64/mkspecs/macx-clang -I/Users/coco/GitHub/pd2-Angrybird/angrybird -I/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers -I/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers -I/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers -F/Applications/QT/5.6/clang_64/lib gameitem.h -o moc_gameitem.cpp
 
+moc_checkpage.cpp: /Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		mainwindow.h \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/QTimer \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		Box2D/Box2D.h \
+		Box2D/Common/b2Settings.h \
+		Box2D/Common/b2Draw.h \
+		Box2D/Common/b2Math.h \
+		Box2D/Common/b2Timer.h \
+		Box2D/Collision/Shapes/b2CircleShape.h \
+		Box2D/Collision/Shapes/b2Shape.h \
+		Box2D/Common/b2BlockAllocator.h \
+		Box2D/Collision/b2Collision.h \
+		Box2D/Collision/Shapes/b2EdgeShape.h \
+		Box2D/Collision/Shapes/b2ChainShape.h \
+		Box2D/Collision/Shapes/b2PolygonShape.h \
+		Box2D/Collision/b2BroadPhase.h \
+		Box2D/Collision/b2DynamicTree.h \
+		Box2D/Common/b2GrowableStack.h \
+		Box2D/Collision/b2Distance.h \
+		Box2D/Collision/b2TimeOfImpact.h \
+		Box2D/Dynamics/b2Body.h \
+		Box2D/Dynamics/b2Fixture.h \
+		Box2D/Dynamics/b2WorldCallbacks.h \
+		Box2D/Dynamics/b2TimeStep.h \
+		Box2D/Dynamics/b2World.h \
+		Box2D/Common/b2StackAllocator.h \
+		Box2D/Dynamics/b2ContactManager.h \
+		Box2D/Dynamics/Contacts/b2Contact.h \
+		Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		Box2D/Dynamics/Joints/b2Joint.h \
+		Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		Box2D/Dynamics/Joints/b2GearJoint.h \
+		Box2D/Dynamics/Joints/b2MotorJoint.h \
+		Box2D/Dynamics/Joints/b2MouseJoint.h \
+		Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		Box2D/Dynamics/Joints/b2RopeJoint.h \
+		Box2D/Dynamics/Joints/b2WeldJoint.h \
+		Box2D/Dynamics/Joints/b2WheelJoint.h \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QMouseEvent \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		gameitem.h \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QPainter \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qpainter.h \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QTransform \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qtransform.h \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/QtMath \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/qmath.h \
+		ground.h \
+		redbird.h \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		checkpage.h
+	/Applications/QT/5.6/clang_64/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -I/Applications/QT/5.6/clang_64/mkspecs/macx-clang -I/Users/coco/GitHub/pd2-Angrybird/angrybird -I/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers -I/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers -I/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers -F/Applications/QT/5.6/clang_64/lib checkpage.h -o moc_checkpage.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_checkpage.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_checkpage.h
 ui_mainwindow.h: mainwindow.ui
 	/Applications/QT/5.6/clang_64/bin/uic mainwindow.ui -o ui_mainwindow.h
+
+ui_checkpage.h: checkpage.ui
+	/Applications/QT/5.6/clang_64/bin/uic checkpage.ui -o ui_checkpage.h
 
 compiler_rez_source_make_all:
 compiler_rez_source_clean:
@@ -996,6 +1073,73 @@ ground.o: ground.cpp ground.h \
 		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ground.o ground.cpp
 
+checkpage.o: checkpage.cpp checkpage.h \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		mainwindow.h \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QDesktopWidget \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/QTimer \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		Box2D/Box2D.h \
+		Box2D/Common/b2Settings.h \
+		Box2D/Common/b2Draw.h \
+		Box2D/Common/b2Math.h \
+		Box2D/Common/b2Timer.h \
+		Box2D/Collision/Shapes/b2CircleShape.h \
+		Box2D/Collision/Shapes/b2Shape.h \
+		Box2D/Common/b2BlockAllocator.h \
+		Box2D/Collision/b2Collision.h \
+		Box2D/Collision/Shapes/b2EdgeShape.h \
+		Box2D/Collision/Shapes/b2ChainShape.h \
+		Box2D/Collision/Shapes/b2PolygonShape.h \
+		Box2D/Collision/b2BroadPhase.h \
+		Box2D/Collision/b2DynamicTree.h \
+		Box2D/Common/b2GrowableStack.h \
+		Box2D/Collision/b2Distance.h \
+		Box2D/Collision/b2TimeOfImpact.h \
+		Box2D/Dynamics/b2Body.h \
+		Box2D/Dynamics/b2Fixture.h \
+		Box2D/Dynamics/b2WorldCallbacks.h \
+		Box2D/Dynamics/b2TimeStep.h \
+		Box2D/Dynamics/b2World.h \
+		Box2D/Common/b2StackAllocator.h \
+		Box2D/Dynamics/b2ContactManager.h \
+		Box2D/Dynamics/Contacts/b2Contact.h \
+		Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		Box2D/Dynamics/Joints/b2Joint.h \
+		Box2D/Dynamics/Joints/b2FrictionJoint.h \
+		Box2D/Dynamics/Joints/b2GearJoint.h \
+		Box2D/Dynamics/Joints/b2MotorJoint.h \
+		Box2D/Dynamics/Joints/b2MouseJoint.h \
+		Box2D/Dynamics/Joints/b2PrismaticJoint.h \
+		Box2D/Dynamics/Joints/b2PulleyJoint.h \
+		Box2D/Dynamics/Joints/b2RevoluteJoint.h \
+		Box2D/Dynamics/Joints/b2RopeJoint.h \
+		Box2D/Dynamics/Joints/b2WeldJoint.h \
+		Box2D/Dynamics/Joints/b2WheelJoint.h \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QMouseEvent \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		gameitem.h \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
+		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QPainter \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qpainter.h \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QTransform \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qtransform.h \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/QtMath \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/qmath.h \
+		ground.h \
+		redbird.h \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QPixmap \
+		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		ui_checkpage.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o checkpage.o checkpage.cpp
+
 qrc_resource.o: qrc_resource.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resource.o qrc_resource.cpp
 
@@ -1004,6 +1148,9 @@ moc_mainwindow.o: moc_mainwindow.cpp
 
 moc_gameitem.o: moc_gameitem.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_gameitem.o moc_gameitem.cpp
+
+moc_checkpage.o: moc_checkpage.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_checkpage.o moc_checkpage.cpp
 
 ####### Install
 

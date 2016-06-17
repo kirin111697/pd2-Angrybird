@@ -33,9 +33,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>-1</y>
+      <y>0</y>
       <width>1024</width>
-      <height>681</height>
+      <height>680</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -63,10 +63,10 @@
    <widget class="QLabel" name="slingShot1">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>382</y>
-      <width>39</width>
-      <height>199</height>
+      <x>140</x>
+      <y>443</y>
+      <width>31</width>
+      <height>160</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -76,7 +76,7 @@
      </sizepolicy>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/new/bg/Angry Birds Seasons/Angry Birds Seasons/SLING_SHOT_01_BACK.png);</string>
+     <string notr="true">background-image: url(:/new/bg/SLING_SHOT_01_BACK_SMALL.png);</string>
     </property>
     <property name="text">
      <string/>
@@ -85,19 +85,33 @@
    <widget class="QLabel" name="slingShot2">
     <property name="geometry">
      <rect>
-      <x>152</x>
-      <y>377</y>
-      <width>41</width>
-      <height>121</height>
+      <x>118</x>
+      <y>439</y>
+      <width>31</width>
+      <height>98</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/new/bg/Angry Birds Seasons/Angry Birds Seasons/SLING_SHOT_01_FRONT.png);</string>
+     <string notr="true">background-image: url(:/new/bg/SLING_SHOT_01_FRONT_SMALL.png);</string>
     </property>
     <property name="text">
      <string/>
     </property>
    </widget>
+   <widget class="QGraphicsView" name="graphicsView_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1024</width>
+      <height>680</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+   </widget>
+   <zorder>graphicsView_2</zorder>
    <zorder>slingShot1</zorder>
    <zorder>graphicsView</zorder>
    <zorder>slingShot2</zorder>
