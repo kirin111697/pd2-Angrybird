@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/new/bg">
+        <file>Angry Birds Seasons/Angry_Bird_red.png</file>
+        <file>Angry_Bird_red_small.png</file>
+        <file>HALLOWEEN2011_GROUND.png</file>
+        <file>Angry Birds Seasons/Angry Birds Seasons/SLING_SHOT_01_BACK.png</file>
+        <file>Angry Birds Seasons/Angry Birds Seasons/SLING_SHOT_01_FRONT.png</file>
+        <file>Angry Birds Seasons/Angry Birds Seasons/HALLOWEEN2011_SKY.png</file>
+        <file>Angry Birds Seasons/Angry Birds Seasons/SUMMER_SKY.png</file>
+        <file>Angry Birds Seasons/Angry Birds Seasons/B_BLUE_ICE_1.png</file>
+    </qresource>
+</RCC>
