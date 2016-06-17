@@ -40,7 +40,7 @@ public:
 
     void retranslateUi(QWidget *checkPage)
     {
-        checkPage->setWindowTitle(QApplication::translate("checkPage", "Form", 0));
+        checkPage->setWindowTitle(QString());
         PushBotton->setText(QApplication::translate("checkPage", "play", 0));
     } // retranslateUi
 

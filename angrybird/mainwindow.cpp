@@ -22,8 +22,10 @@ void MainWindow::showEvent(QShowEvent *){
     world = new b2World(b2Vec2(0.0f, -9.8f));
     gameitem::setGlobalSize(QSizeF(32,21.25),this->size());
     ground *grd = new ground(16,1.5,32,2,QPixmap(":/new/bg/HALLOWEEN2011_GROUND.png").scaled(width(),height()/6.0),world,scene);
-    ground *ss = new ground(3.5,5.525,0.3,1,QPixmap(),world,scene);
+    ground *ss = new ground(3.5,6.2,0.1,1,QPixmap(),world,scene);
+    barrier *bar = new barrier(20,5,0.5,1,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene);
 
+    grdTemp = ss;
     // red->setLinearVelocity(b2Vec2(10,2));
 
     connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
@@ -32,7 +34,7 @@ void MainWindow::showEvent(QShowEvent *){
 }
 
 void MainWindow::startGame(){
-    redBird *red = new redBird(3.5f,10.0f,0.27f,&timer,QPixmap(":/new/bg/Angry_Bird_red_small.png").scaled(width()/18.0,height()/12.0),world,scene);
+    redBird *red = new redBird(3.5f,10.0f,0.27f,&timer,QPixmap(":/new/bg/Angry_Bird_red_small.png"),world,scene);
     itemnow=red;
     canpress=true;
 }
@@ -55,6 +57,7 @@ bool MainWindow::eventFilter(QObject *,QEvent *event){
     {
         std::cout << "Release !" << std::endl;
         endPos=static_cast<QMouseEvent*>(event)->pos();
+        delete grdTemp;
         itemnow->setLinearVelocity(b2Vec2((startPos.x()-endPos.x())/5,(startPos.y()-endPos.y())/5));
     }
     return false;

@@ -4,7 +4,6 @@
 gameitem::gameitem(b2World *world):
     body(NULL),gameworld(world)
 {
-
 }
 
 gameitem::~gameitem()

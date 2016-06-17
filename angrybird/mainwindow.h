@@ -12,6 +12,7 @@
 #include "gameitem.h"
 #include "ground.h"
 #include "redbird.h"
+#include "barrier.h"
 
 namespace Ui {
 class MainWindow;
@@ -42,6 +43,7 @@ private:
     b2World *world;
     QTimer timer;
     redBird *itemnow;
+    ground *grdTemp;
     QPointF startPos;
     QPointF endPos;
     bool canpress;

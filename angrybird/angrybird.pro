@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     gameitem.cpp \
     redbird.cpp \
     ground.cpp \
-    checkpage.cpp
+    checkpage.cpp \
+    barrier.cpp
 
 HEADERS  += mainwindow.h \
     gameitem.h \
     redbird.h \
     ground.h \
-    checkpage.h
+    checkpage.h \
+    barrier.h
 
 FORMS    += mainwindow.ui \
     checkpage.ui
