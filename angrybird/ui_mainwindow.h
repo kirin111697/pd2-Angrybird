@@ -17,6 +17,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -29,6 +30,8 @@ public:
     QLabel *slingShot1;
     QLabel *slingShot2;
     QGraphicsView *graphicsView_2;
+    QPushButton *quit;
+    QPushButton *restart;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -67,11 +70,19 @@ public:
         graphicsView_2->setObjectName(QStringLiteral("graphicsView_2"));
         graphicsView_2->setGeometry(QRect(0, 0, 1024, 680));
         graphicsView_2->setStyleSheet(QStringLiteral(""));
+        quit = new QPushButton(centralWidget);
+        quit->setObjectName(QStringLiteral("quit"));
+        quit->setGeometry(QRect(890, 640, 115, 32));
+        restart = new QPushButton(centralWidget);
+        restart->setObjectName(QStringLiteral("restart"));
+        restart->setGeometry(QRect(750, 640, 115, 32));
         MainWindow->setCentralWidget(centralWidget);
         graphicsView_2->raise();
         slingShot1->raise();
         graphicsView->raise();
         slingShot2->raise();
+        quit->raise();
+        restart->raise();
 
         retranslateUi(MainWindow);
 
@@ -83,6 +94,8 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "AngryBird", 0));
         slingShot1->setText(QString());
         slingShot2->setText(QString());
+        quit->setText(QApplication::translate("MainWindow", "Quit", 0));
+        restart->setText(QApplication::translate("MainWindow", "Restart", 0));
     } // retranslateUi
 
 };

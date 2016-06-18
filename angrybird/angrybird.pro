@@ -18,14 +18,18 @@ SOURCES += main.cpp\
     redbird.cpp \
     ground.cpp \
     checkpage.cpp \
-    barrier.cpp
+    barrier.cpp \
+    collcheck.cpp \
+    yellobird.cpp
 
 HEADERS  += mainwindow.h \
     gameitem.h \
     redbird.h \
     ground.h \
     checkpage.h \
-    barrier.h
+    barrier.h \
+    collcheck.h \
+    yellobird.h
 
 FORMS    += mainwindow.ui \
     checkpage.ui

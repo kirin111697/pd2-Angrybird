@@ -4,10 +4,17 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    canpress(false)
+    canpress(false),
+    birdamt(0)
 {
     ui->setupUi(this);
     qApp->installEventFilter(this);
+    connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
+    connect(&checkBound,SIGNAL(timeout()),this,SLOT(checkBird()));
+    connect(this,SIGNAL(birdStop()),this,SLOT(killBird()));
+    connect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));
+    //countScore = new collCheck;
+    //world->SetContactListener(countScore);
 }
 
 MainWindow::~MainWindow()
@@ -22,32 +29,34 @@ void MainWindow::showEvent(QShowEvent *){
     world = new b2World(b2Vec2(0.0f, -9.8f));
     gameitem::setGlobalSize(QSizeF(32,21.25),this->size());
     ground *grd = new ground(16,1.5,32,2,QPixmap(":/new/bg/HALLOWEEN2011_GROUND.png").scaled(width(),height()/6.0),world,scene);
-    barrier *bar1 = new barrier(20,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene);
-    barrier *bar2 = new barrier(17,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene);
-    // red->setLinearVelocity(b2Vec2(10,2));
-
-    barrier *piggy = new barrier(19.0f,4.0f,1.2f,&timer,QPixmap(":/new/bg/pigy-angry-birds.png"),world,scene);
-
-    connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
-    connect(&checkBound,SIGNAL(timeout()),this,SLOT(checkBird()));
-    connect(this,SIGNAL(birdStop()),this,SLOT(killBird()));
-    connect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));
+    itemList.push_back(new barrier(21,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene));
+    itemList.push_back(new barrier(17,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene));
+    itemList.push_back(new barrier(19.2,7,168.0/32.0,20.0/32.0,&timer,QPixmap(":/new/bg/Angry Birds Seasons/Angry Birds Seasons/BLOCK_ROCK_1_6.png"),world,scene));
+    itemList.push_back(new barrier(19.2f,4.0f,1.0f,&timer,QPixmap(":/new/bg/pigy-angry-birds.png"),world,scene));
     timer.start(100/6);
 }
 
-void MainWindow::startGame(){//要加其他隻時記得處理彈弓的地板，玩玩第一隻之後會被刪掉
-    ground *ss = new ground(4.4,4.5,0.1,1,QPixmap(),world,scene);
-    grdTemp = ss;
-    addBird();
+void MainWindow::startGame(){
+    if (birdamt<5){
+        ground *ss = new ground(4.4,4.5,0.1,1,QPixmap(),world,scene);
+        grdTemp = ss;
+        addBird();
+    }
+    else{
+        this->close();
+    }
+    birdamt++;
 }
 
 void MainWindow::addBird(){
-    redBird *red = new redBird(4.4f,10.0f,0.78f,&timer,QPixmap(":/new/bg/Angry_Bird_red_small.png"),world,scene);
+    redBird *red = new redBird(4.4f,7.0f,0.78f,&timer,QPixmap(":/new/bg/Angry_Bird_red_small.png"),world,scene);
+    itemList.push_back(red);
     itemnow=red;
     canpress=true;
 }
 
 void MainWindow::killBird(){
+    itemList.pop_back();
     delete itemnow;
     std::cout << "KILL BIRD !" << std::endl ;
     startGame();
@@ -112,4 +121,23 @@ void MainWindow::tick()
 void MainWindow::QUITSLOT()
 {
     std::cout << "Quit Game Signal receive !" << std::endl ;
+}
+
+void MainWindow::on_restart_clicked()
+{
+    for(int i=0;i < itemList.size();++i){
+        delete itemList[i];
+    }
+    itemList.clear();
+    itemList.push_back(new barrier(21,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene));
+    itemList.push_back(new barrier(17,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene));
+    itemList.push_back(new barrier(19.2,7,168.0/32.0,20.0/32.0,&timer,QPixmap(":/new/bg/Angry Birds Seasons/Angry Birds Seasons/BLOCK_ROCK_1_6.png"),world,scene));
+    itemList.push_back(new barrier(19.2f,4.0f,1.0f,&timer,QPixmap(":/new/bg/pigy-angry-birds.png"),world,scene));
+    birdamt=0;
+    startGame();
+}
+
+void MainWindow::on_quit_clicked()
+{
+    this->close();
 }

@@ -3,6 +3,7 @@
 barrier::barrier(float x,float y,float w,float h,QTimer *timer,QPixmap pixmap,b2World *world,QGraphicsScene *scene)
     :gameitem(world)
 {
+    flag=false;
     pic.setPixmap(pixmap);
     pic.setTransformOriginPoint(pic.boundingRect().width()/2,pic.boundingRect().height()/2);
     itemsize=QSize(w,h);
@@ -31,6 +32,7 @@ barrier::barrier(float x,float y,float w,float h,QTimer *timer,QPixmap pixmap,b2
 barrier::barrier(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene)
     :gameitem(world)
 {
+    flag=true;
     pic.setPixmap(pixmap);
     pic.setTransformOriginPoint(pic.boundingRect().width()/2,pic.boundingRect().height()/2);
     itemsize=QSize(radius*2,radius*2);
@@ -54,4 +56,13 @@ barrier::barrier(float x, float y, float radius, QTimer *timer, QPixmap pixmap, 
 
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
     scene->addItem(&pic);
+}
+
+void barrier::collision(){
+    std::cout << "collision !" << std::endl ;
+    if(flag){
+        std::cout << "hit pig !" << std::endl ;
+    }
+    else{
+    }
 }

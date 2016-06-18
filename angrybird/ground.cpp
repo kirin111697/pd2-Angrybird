@@ -17,3 +17,8 @@ ground::ground(float x, float y, float w, float h, QPixmap pixmap, b2World *worl
     scene->addItem(&pic);
     paint();
 }
+
+void ground::collision()
+{
+
+}

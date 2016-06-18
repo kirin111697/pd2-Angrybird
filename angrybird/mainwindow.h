@@ -13,6 +13,7 @@
 #include "ground.h"
 #include "redbird.h"
 #include "barrier.h"
+#include "collcheck.h"
 
 namespace Ui {
 class MainWindow;
@@ -40,10 +41,13 @@ private slots:
     void checkBird();
     void killBird();
     void QUITSLOT();
+    void on_restart_clicked();
+    void on_quit_clicked();
 
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
+    QList<gameitem *> itemList;
     b2World *world;
     QTimer timer;
     QTimer checkBound;
@@ -51,7 +55,10 @@ private:
     ground *grdTemp;
     QPointF startPos;
     QPointF endPos;
+    //collCheck *countScore;
     bool canpress;
+    int birdamt;
+    //int score;
 };
 
 #endif // MAINWINDOW_H

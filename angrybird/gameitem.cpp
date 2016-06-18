@@ -9,6 +9,7 @@ gameitem::gameitem(b2World *world):
 gameitem::~gameitem()
 {
     gameworld->DestroyBody(body);
+
 }
 
 QSizeF gameitem::g_windowsize = QSizeF();
@@ -30,4 +31,13 @@ void gameitem::paint()
     pic.setPos(mapPoint);
     pic.resetTransform();
     pic.setRotation(-(body->GetAngle()*180/3.14159));
+}
+
+void gameitem::collision(){
+    std::cout << "collision !" << std::endl ;
+}
+
+void gameitem::click()
+{
+    std::cout << "click !" << std::endl ;
 }

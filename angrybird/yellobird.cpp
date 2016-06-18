@@ -1,6 +1,6 @@
-#include "redbird.h"
+#include "yellobird.h"
 
-redBird::redBird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene)
+yellobird::yellobird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene)
     :gameitem(world)
 {
     pic.setPixmap(pixmap);
@@ -23,28 +23,18 @@ redBird::redBird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, 
     fixturedef.restitution = BIRD_RESTITUTION;
     body->SetAngularDamping(3);
     body->CreateFixture(&fixturedef);
-    //body->SetGravityScale(0);
 
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
     scene->addItem(&pic);
 }
 
-void redBird::setLinearVelocity(b2Vec2 velocity)
+void yellobird::collision()
 {
-    body->SetLinearVelocity(velocity);
+
 }
 
-b2Vec2 redBird::getPos(){
-    b2Vec2 pos = body->GetPosition();
-    return pos;
-}
-
-b2Vec2 redBird::getVelocity()
+void yellobird::click()
 {
     b2Vec2 v = body->GetLinearVelocity();
-    return v;
-}
-
-void redBird::collision(){
-
+    body->SetLinearVelocity((v.x*2,v.y*2));
 }
