@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <Box2D/Box2D.h>
 #include <QMouseEvent>
+#include <QVector>
 #include <iostream>
 
 #include "gameitem.h"
@@ -14,6 +15,7 @@
 #include "redbird.h"
 #include "yellowbird.h"
 #include "whitebird.h"
+#include "greenbird.h"
 #include "barrier.h"
 #include "collcheck.h"
 
@@ -49,7 +51,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
-    QList<gameitem *> itemList;
+    QVector<gameitem*>  itemList;
     b2World *world;
     QTimer timer;
     QTimer checkBound;

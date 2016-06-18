@@ -62,6 +62,12 @@ void MainWindow::addBird(){
         itemnow=white;
         canpress=true;
     }
+    else if(birdamt==2){
+        greenbird *green = new greenbird(4.3f,7.0f,0.58f,&timer,QPixmap(":/new/bg/greenbird_SMALL.png"),world,scene);
+        itemList.push_back(green);
+        itemnow=green;
+        canpress=true;
+    }
     else{
         redBird *red = new redBird(4.4f,7.0f,0.78f,&timer,QPixmap(":/new/bg/Angry_Bird_red_small.png"),world,scene);
         itemList.push_back(red);
@@ -72,9 +78,10 @@ void MainWindow::addBird(){
 }
 
 void MainWindow::killBird(){
-    delete itemnow;
-    itemList.pop_back();
-
+    QVector<gameitem*>::iterator it;
+    it=&itemnow;
+    delete (*it);
+    itemList.erase(it);
     std::cout << "KILL BIRD !" << std::endl ;
     startGame();
 }
@@ -95,6 +102,11 @@ void MainWindow::checkBird(){
             std::cout << "too slow !" << std::endl ;
             checkBound.stop();
         }
+    }
+    else if (birdVelo.x==0 && birdVelo.y==0){
+        emit birdStop();
+        std::cout << "too slow !" << std::endl ;
+        checkBound.stop();
     }
 }
 

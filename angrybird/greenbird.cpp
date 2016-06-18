@@ -1,6 +1,6 @@
-#include "whitebird.h"
+#include "greenbird.h"
 
-whitebird::whitebird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene)
+greenbird::greenbird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene)
     :redBird(x, y, radius, timer, pixmap, world, scene)
 {
     pic.setPixmap(pixmap);
@@ -20,7 +20,7 @@ whitebird::whitebird(float x, float y, float radius, QTimer *timer, QPixmap pixm
     fixturedef.shape = &dynamicShape;
     fixturedef.density = BIRD_DENSITY;
     fixturedef.friction = BIRD_FRICTION;
-    fixturedef.restitution = 0.1f;
+    fixturedef.restitution = BIRD_RESTITUTION;
     body->SetAngularDamping(3);
     body->CreateFixture(&fixturedef);
 
@@ -28,8 +28,9 @@ whitebird::whitebird(float x, float y, float radius, QTimer *timer, QPixmap pixm
     scene->addItem(&pic);
 }
 
-void whitebird::click()
+void greenbird::click()
 {
-    std::cout << "click white !" << std::endl ;
-    body->SetLinearVelocity(b2Vec2(0,-100.0));
+    pic.setPixmap(QPixmap(":/new/bg/greenbird_BIG.png"));
+    pic.setTransformOriginPoint(pic.boundingRect().width()/2,pic.boundingRect().height()/2);
+    itemsize=QSize(2,2);
 }
