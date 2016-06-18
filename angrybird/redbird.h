@@ -6,8 +6,8 @@
 #include <QGraphicsScene>
 #include <QTimer>
 
-#define BIRD_DENSITY 10.0f
-#define BIRD_FRICTION 0.2f
+#define BIRD_DENSITY 5.0f
+#define BIRD_FRICTION 1.0f
 #define BIRD_RESTITUTION 0.5f
 
 class redBird : public gameitem

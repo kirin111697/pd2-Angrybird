@@ -22,9 +22,11 @@ void MainWindow::showEvent(QShowEvent *){
     world = new b2World(b2Vec2(0.0f, -9.8f));
     gameitem::setGlobalSize(QSizeF(32,21.25),this->size());
     ground *grd = new ground(16,1.5,32,2,QPixmap(":/new/bg/HALLOWEEN2011_GROUND.png").scaled(width(),height()/6.0),world,scene);
-    barrier *bar1= new barrier(20,5,0.5,1,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene);
-    barrier *bar2= new barrier(17,5,0.5,1,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene);
+    barrier *bar1 = new barrier(20,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene);
+    barrier *bar2 = new barrier(17,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene);
     // red->setLinearVelocity(b2Vec2(10,2));
+
+    barrier *piggy = new barrier(19.0f,4.0f,1.2f,&timer,QPixmap(":/new/bg/pigy-angry-birds.png"),world,scene);
 
     connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
     connect(&checkBound,SIGNAL(timeout()),this,SLOT(checkBird()));
@@ -34,13 +36,13 @@ void MainWindow::showEvent(QShowEvent *){
 }
 
 void MainWindow::startGame(){//要加其他隻時記得處理彈弓的地板，玩玩第一隻之後會被刪掉
-    ground *ss = new ground(3.5,6.2,0.1,1,QPixmap(),world,scene);
+    ground *ss = new ground(4.4,4.5,0.1,1,QPixmap(),world,scene);
     grdTemp = ss;
     addBird();
 }
 
 void MainWindow::addBird(){
-    redBird *red = new redBird(3.5f,10.0f,0.27f,&timer,QPixmap(":/new/bg/Angry_Bird_red_small.png"),world,scene);
+    redBird *red = new redBird(4.4f,10.0f,0.78f,&timer,QPixmap(":/new/bg/Angry_Bird_red_small.png"),world,scene);
     itemnow=red;
     canpress=true;
 }
@@ -61,8 +63,8 @@ void MainWindow::checkBird(){
         checkBound.stop();
     }
     std::cout << "y is " << birdPos.y << std::endl ;
-    if (birdPos.y < 11.5){
-        if (birdVelo.x == 0 && birdVelo.y == 0 ){
+    if (birdPos.y < 3.3){
+        if (birdVelo.x < 0.00000000001 && birdVelo.y < 0.000000000001){
             emit birdStop();
             std::cout << "too slow !" << std::endl ;
             checkBound.stop();

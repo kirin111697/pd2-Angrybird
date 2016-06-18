@@ -585,6 +585,7 @@ compiler_rcc_make_all: qrc_resource.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resource.cpp
 qrc_resource.cpp: resource.qrc \
+		pigy-angry-birds.png \
 		HALLOWEEN2011_GROUND.png \
 		SLING_SHOT_01_FRONT_SMALL.png \
 		Angry_Bird_red_small.png \

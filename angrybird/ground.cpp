@@ -11,7 +11,7 @@ ground::ground(float x, float y, float w, float h, QPixmap pixmap, b2World *worl
 
     body = world->CreateBody(&groundDef);
     b2PolygonShape bodyBox;
-    bodyBox.SetAsBox(w,h);
+    bodyBox.SetAsBox(w/2,h/2);
     body->CreateFixture(&bodyBox,9.0f);
 
     scene->addItem(&pic);
