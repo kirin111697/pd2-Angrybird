@@ -52,37 +52,39 @@ void MainWindow::startGame(){
 void MainWindow::addBird(){
     if (birdamt==0){
         yellowbird *yellow = new yellowbird(4.3f,7.0f,0.6f,&timer,QPixmap(":/new/bg/angry-bird-yellow-icon.png"),world,scene);
-        itemList.push_back(yellow);
+        birdList.push_back(yellow);
         itemnow=yellow;
+        it=&itemnow;
         canpress=true;
     }
     else if(birdamt==1){
         whitebird *white = new whitebird(4.3f,7.0f,0.63f,&timer,QPixmap(":/new/bg/angry-bird-white-icon.png"),world,scene);
-        itemList.push_back(white);
+        birdList.push_back(white);
         itemnow=white;
+        it=&itemnow;
         canpress=true;
     }
     else if(birdamt==2){
         greenbird *green = new greenbird(4.3f,7.0f,0.58f,&timer,QPixmap(":/new/bg/greenbird_SMALL.png"),world,scene);
-        itemList.push_back(green);
+        birdList.push_back(green);
         itemnow=green;
+        it=&itemnow;
         canpress=true;
     }
     else{
         redBird *red = new redBird(4.4f,7.0f,0.78f,&timer,QPixmap(":/new/bg/Angry_Bird_red_small.png"),world,scene);
-        itemList.push_back(red);
+        birdList.push_back(red);
         itemnow=red;
+        it=&itemnow;
         canpress=true;
-        skill=true;
     }
 }
 
 void MainWindow::killBird(){
-    QVector<gameitem*>::iterator it;
-    it=&itemnow;
     delete (*it);
-    itemList.erase(it);
-    std::cout << "KILL BIRD !" << std::endl ;
+    std::cout << "KILL BIRD !" << std::endl;
+    birdList.clear();
+    //itemList.clear();
     startGame();
 }
 

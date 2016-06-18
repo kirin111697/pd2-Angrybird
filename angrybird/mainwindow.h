@@ -52,6 +52,8 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QVector<gameitem*>  itemList;
+    QVector<gameitem*>  birdList;
+    QVector<gameitem*>::iterator it;
     b2World *world;
     QTimer timer;
     QTimer checkBound;
