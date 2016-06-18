@@ -9,7 +9,6 @@ gameitem::gameitem(b2World *world):
 gameitem::~gameitem()
 {
     gameworld->DestroyBody(body);
-
 }
 
 QSizeF gameitem::g_windowsize = QSizeF();

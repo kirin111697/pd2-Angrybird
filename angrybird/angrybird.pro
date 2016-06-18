@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     checkpage.cpp \
     barrier.cpp \
     collcheck.cpp \
-    yellowbird.cpp
+    yellowbird.cpp \
+    whitebird.cpp
 
 HEADERS  += mainwindow.h \
     gameitem.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     checkpage.h \
     barrier.h \
     collcheck.h \
-    yellowbird.h
+    yellowbird.h \
+    whitebird.h
 
 FORMS    += mainwindow.ui \
     checkpage.ui

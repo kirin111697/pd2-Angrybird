@@ -15,8 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,SIGNAL(birdStop()),this,SLOT(killBird()));
     connect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));
     world = new b2World(b2Vec2(0.0f, -9.8f));
-    countScore = new collCheck;
-    world->SetContactListener(countScore);
+    //countScore = new collCheck;
+    //world->SetContactListener(countScore);
 }
 
 MainWindow::~MainWindow()
@@ -39,7 +39,7 @@ void MainWindow::showEvent(QShowEvent *){
 
 void MainWindow::startGame(){
     if (birdamt<5){
-        ground *ss = new ground(4.4,4.5,0.1,1,QPixmap(),world,scene);
+        ground *ss = new ground(4.4,4.5,1,1.1,QPixmap(),world,scene);
         grdTemp = ss;
         addBird();
     }
@@ -51,9 +51,15 @@ void MainWindow::startGame(){
 
 void MainWindow::addBird(){
     if (birdamt==0){
-        yellowbird *yellow = new yellowbird(4.4f,7.0f,0.66f,&timer,QPixmap(":/new/bg/angry-bird-yellow-icon.png"),world,scene);
+        yellowbird *yellow = new yellowbird(4.3f,7.0f,0.6f,&timer,QPixmap(":/new/bg/angry-bird-yellow-icon.png"),world,scene);
         itemList.push_back(yellow);
         itemnow=yellow;
+        canpress=true;
+    }
+    else if(birdamt==1){
+        whitebird *white = new whitebird(4.3f,7.0f,0.63f,&timer,QPixmap(":/new/bg/angry-bird-white-icon.png"),world,scene);
+        itemList.push_back(white);
+        itemnow=white;
         canpress=true;
     }
     else{
@@ -66,8 +72,9 @@ void MainWindow::addBird(){
 }
 
 void MainWindow::killBird(){
-    itemList.pop_back();
     delete itemnow;
+    itemList.pop_back();
+
     std::cout << "KILL BIRD !" << std::endl ;
     startGame();
 }
@@ -83,7 +90,7 @@ void MainWindow::checkBird(){
     }
     //std::cout << "y is " << birdPos.y << std::endl ;
     if (birdPos.y < 3.3){
-        if (birdVelo.x < 0.00000000001 && birdVelo.y < 0.000000000001){
+        if (birdVelo.x < 0.000000001 && birdVelo.y < 0.000000001){
             emit birdStop();
             std::cout << "too slow !" << std::endl ;
             checkBound.stop();
@@ -143,6 +150,8 @@ void MainWindow::QUITSLOT()
 void MainWindow::on_restart_clicked()
 {
     for(int i=0;i < itemList.size();++i){
+
+        //scene->removeItem();
         delete itemList[i];
     }
     itemList.clear();

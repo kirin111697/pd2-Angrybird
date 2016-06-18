@@ -22,8 +22,8 @@ public slots:
 
 protected:
     b2Body *body;
-    QGraphicsPixmapItem pic;
     QSizeF itemsize;
+    QGraphicsPixmapItem pic;
     b2World *gameworld;
     static QSizeF g_worldsize, g_windowsize;
 };

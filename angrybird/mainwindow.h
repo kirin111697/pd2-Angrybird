@@ -13,6 +13,7 @@
 #include "ground.h"
 #include "redbird.h"
 #include "yellowbird.h"
+#include "whitebird.h"
 #include "barrier.h"
 #include "collcheck.h"
 
