@@ -56,7 +56,7 @@ SOURCES       = main.cpp \
 		checkpage.cpp \
 		barrier.cpp \
 		collcheck.cpp \
-		yellobird.cpp qrc_resource.cpp \
+		yellowbird.cpp qrc_resource.cpp \
 		moc_mainwindow.cpp \
 		moc_gameitem.cpp \
 		moc_checkpage.cpp
@@ -68,7 +68,7 @@ OBJECTS       = main.o \
 		checkpage.o \
 		barrier.o \
 		collcheck.o \
-		yellobird.o \
+		yellowbird.o \
 		qrc_resource.o \
 		moc_mainwindow.o \
 		moc_gameitem.o \
@@ -221,7 +221,7 @@ DIST          = /Applications/QT/5.6/clang_64/mkspecs/features/spec_pre.prf \
 		checkpage.h \
 		barrier.h \
 		collcheck.h \
-		yellobird.h main.cpp \
+		yellowbird.h main.cpp \
 		mainwindow.cpp \
 		gameitem.cpp \
 		redbird.cpp \
@@ -229,7 +229,7 @@ DIST          = /Applications/QT/5.6/clang_64/mkspecs/features/spec_pre.prf \
 		checkpage.cpp \
 		barrier.cpp \
 		collcheck.cpp \
-		yellobird.cpp
+		yellowbird.cpp
 QMAKE_TARGET  = angrybird
 DESTDIR       = 
 TARGET        = angrybird.app/Contents/MacOS/angrybird
@@ -565,8 +565,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents resource.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents mainwindow.h gameitem.h redbird.h ground.h checkpage.h barrier.h collcheck.h yellobird.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwindow.cpp gameitem.cpp redbird.cpp ground.cpp checkpage.cpp barrier.cpp collcheck.cpp yellobird.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwindow.h gameitem.h redbird.h ground.h checkpage.h barrier.h collcheck.h yellowbird.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwindow.cpp gameitem.cpp redbird.cpp ground.cpp checkpage.cpp barrier.cpp collcheck.cpp yellowbird.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui checkpage.ui $(DISTDIR)/
 
 
@@ -597,6 +597,7 @@ qrc_resource.cpp: resource.qrc \
 		HALLOWEEN2011_GROUND.png \
 		SLING_SHOT_01_FRONT_SMALL.png \
 		Angry_Bird_red_small.png \
+		angry-bird-yellow-icon.png \
 		SLING_SHOT_01_BACK_SMALL.png \
 		BLOCK_ROCK_1_4_2.png
 	/Applications/QT/5.6/clang_64/bin/rcc -name resource resource.qrc -o qrc_resource.cpp
@@ -664,6 +665,7 @@ moc_mainwindow.cpp: /Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Header
 		redbird.h \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QPixmap \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		yellowbird.h \
 		barrier.h \
 		collcheck.h \
 		mainwindow.h
@@ -780,6 +782,7 @@ moc_checkpage.cpp: /Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers
 		redbird.h \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QPixmap \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		yellowbird.h \
 		barrier.h \
 		collcheck.h \
 		checkpage.h
@@ -869,6 +872,7 @@ main.o: main.cpp mainwindow.h \
 		redbird.h \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QPixmap \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		yellowbird.h \
 		barrier.h \
 		collcheck.h \
 		checkpage.h \
@@ -939,6 +943,7 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		redbird.h \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QPixmap \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		yellowbird.h \
 		barrier.h \
 		collcheck.h \
 		ui_mainwindow.h
@@ -1162,6 +1167,7 @@ checkpage.o: checkpage.cpp checkpage.h \
 		redbird.h \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QPixmap \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qpixmap.h \
+		yellowbird.h \
 		barrier.h \
 		collcheck.h \
 		ui_checkpage.h
@@ -1278,7 +1284,7 @@ collcheck.o: collcheck.cpp collcheck.h \
 		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/qtimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o collcheck.o collcheck.cpp
 
-yellobird.o: yellobird.cpp yellobird.h \
+yellowbird.o: yellowbird.cpp yellowbird.h \
 		gameitem.h \
 		Box2D/Box2D.h \
 		Box2D/Common/b2Settings.h \
@@ -1332,7 +1338,7 @@ yellobird.o: yellobird.cpp yellobird.h \
 		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
 		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/QTimer \
 		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/qtimer.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o yellobird.o yellobird.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o yellowbird.o yellowbird.cpp
 
 qrc_resource.o: qrc_resource.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resource.o qrc_resource.cpp

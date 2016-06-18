@@ -1,7 +1,7 @@
-#include "yellobird.h"
+#include "yellowbird.h"
 
-yellobird::yellobird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene)
-    :gameitem(world)
+yellowbird::yellowbird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene)
+  :redBird(x, y, radius, timer, pixmap, world, scene)
 {
     pic.setPixmap(pixmap);
     pic.setTransformOriginPoint(pic.boundingRect().width()/2,pic.boundingRect().height()/2);
@@ -28,13 +28,14 @@ yellobird::yellobird(float x, float y, float radius, QTimer *timer, QPixmap pixm
     scene->addItem(&pic);
 }
 
-void yellobird::collision()
+void yellowbird::collision()
 {
 
 }
 
-void yellobird::click()
+void yellowbird::click()
 {
+    std::cout << "click yellow !" << std::endl ;
     b2Vec2 v = body->GetLinearVelocity();
-    body->SetLinearVelocity((v.x*2,v.y*2));
+    body->SetLinearVelocity(b2Vec2(v.x*5,v.y*5));
 }

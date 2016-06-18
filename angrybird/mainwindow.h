@@ -12,6 +12,7 @@
 #include "gameitem.h"
 #include "ground.h"
 #include "redbird.h"
+#include "yellowbird.h"
 #include "barrier.h"
 #include "collcheck.h"
 
@@ -51,14 +52,15 @@ private:
     b2World *world;
     QTimer timer;
     QTimer checkBound;
-    redBird *itemnow;
+    gameitem *itemnow;
     ground *grdTemp;
     QPointF startPos;
     QPointF endPos;
-    //collCheck *countScore;
+    collCheck *countScore;
     bool canpress;
+    bool skill;
     int birdamt;
-    //int score;
+    int score;
 };
 
 #endif // MAINWINDOW_H

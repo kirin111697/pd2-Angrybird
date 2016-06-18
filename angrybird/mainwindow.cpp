@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     canpress(false),
+    skill(false),
     birdamt(0)
 {
     ui->setupUi(this);
@@ -13,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&checkBound,SIGNAL(timeout()),this,SLOT(checkBird()));
     connect(this,SIGNAL(birdStop()),this,SLOT(killBird()));
     connect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));
-    //countScore = new collCheck;
-    //world->SetContactListener(countScore);
+    countScore = new collCheck;
+    world->SetContactListener(countScore);
 }
 
 MainWindow::~MainWindow()
@@ -49,10 +50,20 @@ void MainWindow::startGame(){
 }
 
 void MainWindow::addBird(){
-    redBird *red = new redBird(4.4f,7.0f,0.78f,&timer,QPixmap(":/new/bg/Angry_Bird_red_small.png"),world,scene);
-    itemList.push_back(red);
-    itemnow=red;
-    canpress=true;
+    if (birdamt==0){
+        yellowbird *yellow = new yellowbird(4.4f,7.0f,0.66f,&timer,QPixmap(":/new/bg/angry-bird-yellow-icon.png"),world,scene);
+        itemList.push_back(yellow);
+        itemnow=yellow;
+        canpress=true;
+        skill=true;
+    }
+    else{
+        redBird *red = new redBird(4.4f,7.0f,0.78f,&timer,QPixmap(":/new/bg/Angry_Bird_red_small.png"),world,scene);
+        itemList.push_back(red);
+        itemnow=red;
+        canpress=true;
+        skill=true;
+    }
 }
 
 void MainWindow::killBird(){
@@ -63,8 +74,8 @@ void MainWindow::killBird(){
 }
 
 void MainWindow::checkBird(){
-    b2Vec2 birdPos=itemnow->getPos();
-    b2Vec2 birdVelo=itemnow->getVelocity();
+    b2Vec2 birdPos=static_cast<redBird*>(itemnow)->getPos();
+    b2Vec2 birdVelo=static_cast<redBird*>(itemnow)->getVelocity();
     std::cout << "x is " << birdPos.x << std::endl ;
     if (birdPos.x > 32 || birdPos.x < 0){
         emit birdStop();
@@ -89,6 +100,10 @@ bool MainWindow::eventFilter(QObject *,QEvent *event){
     {
         startPos=static_cast<QMouseEvent*>(event)->pos();
         std::cout << "Press !" << std::endl ;
+        if(skill){
+            itemnow->click();
+            skill=false;
+        }
     }
     if(event->type() == QEvent::MouseMove)
     {
@@ -101,7 +116,7 @@ bool MainWindow::eventFilter(QObject *,QEvent *event){
         endPos=static_cast<QMouseEvent*>(event)->pos();
         delete grdTemp;
         canpress=false;
-        itemnow->setLinearVelocity(b2Vec2((startPos.x()-endPos.x())/5,(endPos.y()-startPos.y())/5));
+        static_cast<redBird*>(itemnow)->setLinearVelocity(b2Vec2((startPos.x()-endPos.x())/5,(endPos.y()-startPos.y())/5));
         checkBound.start(100/6);
     }
     return false;
