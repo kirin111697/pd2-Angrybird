@@ -2,6 +2,7 @@
 #define GROUND_H
 
 #include "gameitem.h"
+#include <iostream>
 #include <QGraphicsScene>
 
 class ground: public gameitem

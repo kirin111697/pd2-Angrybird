@@ -20,5 +20,5 @@ ground::ground(float x, float y, float w, float h, QPixmap pixmap, b2World *worl
 
 void ground::collision()
 {
-
+    std::cout << "collision in ground!" << std::endl ;
 }

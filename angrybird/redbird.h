@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include <QGraphicsScene>
 #include <QTimer>
+#include <iostream>
 
 #define BIRD_DENSITY 5.0f
 #define BIRD_FRICTION 1.0f

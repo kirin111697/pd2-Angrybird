@@ -59,10 +59,10 @@ barrier::barrier(float x, float y, float radius, QTimer *timer, QPixmap pixmap, 
 }
 
 void barrier::collision(){
-    std::cout << "collision !" << std::endl ;
     if(flag){
         std::cout << "hit pig !" << std::endl ;
     }
     else{
+        std::cout << "collision in barrier!" << std::endl;
     }
 }

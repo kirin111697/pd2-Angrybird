@@ -34,7 +34,7 @@ void gameitem::paint()
 }
 
 void gameitem::collision(){
-    std::cout << "collision !" << std::endl ;
+    std::cout << "collision in gameitem !" << std::endl ;
 }
 
 void gameitem::click()
