@@ -22,21 +22,52 @@ void MainWindow::showEvent(QShowEvent *){
     world = new b2World(b2Vec2(0.0f, -9.8f));
     gameitem::setGlobalSize(QSizeF(32,21.25),this->size());
     ground *grd = new ground(16,1.5,32,2,QPixmap(":/new/bg/HALLOWEEN2011_GROUND.png").scaled(width(),height()/6.0),world,scene);
-    ground *ss = new ground(3.5,6.2,0.1,1,QPixmap(),world,scene);
-    barrier *bar = new barrier(20,5,0.5,1,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene);
-
-    grdTemp = ss;
+    barrier *bar1= new barrier(20,5,0.5,1,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene);
+    barrier *bar2= new barrier(17,5,0.5,1,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene);
     // red->setLinearVelocity(b2Vec2(10,2));
 
     connect(&timer,SIGNAL(timeout()),this,SLOT(tick()));
+    connect(&checkBound,SIGNAL(timeout()),this,SLOT(checkBird()));
+    connect(this,SIGNAL(birdStop()),this,SLOT(killBird()));
     connect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));
     timer.start(100/6);
 }
 
-void MainWindow::startGame(){
+void MainWindow::startGame(){//要加其他隻時記得處理彈弓的地板，玩玩第一隻之後會被刪掉
+    ground *ss = new ground(3.5,6.2,0.1,1,QPixmap(),world,scene);
+    grdTemp = ss;
+    addBird();
+}
+
+void MainWindow::addBird(){
     redBird *red = new redBird(3.5f,10.0f,0.27f,&timer,QPixmap(":/new/bg/Angry_Bird_red_small.png"),world,scene);
     itemnow=red;
     canpress=true;
+}
+
+void MainWindow::killBird(){
+    delete itemnow;
+    std::cout << "KILL BIRD !" << std::endl ;
+    startGame();
+}
+
+void MainWindow::checkBird(){
+    b2Vec2 birdPos=itemnow->getPos();
+    b2Vec2 birdVelo=itemnow->getVelocity();
+    std::cout << "x is " << birdPos.x << std::endl ;
+    if (birdPos.x > 32 || birdPos.x < 0){
+        emit birdStop();
+        std::cout << "out of window !" << std::endl ;
+        checkBound.stop();
+    }
+    std::cout << "y is " << birdPos.y << std::endl ;
+    if (birdPos.y < 11.5){
+        if (birdVelo.x == 0 && birdVelo.y == 0 ){
+            emit birdStop();
+            std::cout << "too slow !" << std::endl ;
+            checkBound.stop();
+        }
+    }
 }
 
 bool MainWindow::eventFilter(QObject *,QEvent *event){
@@ -58,7 +89,9 @@ bool MainWindow::eventFilter(QObject *,QEvent *event){
         std::cout << "Release !" << std::endl;
         endPos=static_cast<QMouseEvent*>(event)->pos();
         delete grdTemp;
-        itemnow->setLinearVelocity(b2Vec2((startPos.x()-endPos.x())/5,(startPos.y()-endPos.y())/5));
+        canpress=false;
+        itemnow->setLinearVelocity(b2Vec2((startPos.x()-endPos.x())/5,(endPos.y()-startPos.y())/5));
+        checkBound.start(100/6);
     }
     return false;
 }

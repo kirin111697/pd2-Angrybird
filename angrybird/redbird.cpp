@@ -23,6 +23,7 @@ redBird::redBird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, 
     fixturedef.restitution = BIRD_RESTITUTION;
     body->SetAngularDamping(3);
     body->CreateFixture(&fixturedef);
+    //body->SetGravityScale(0);
 
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
     scene->addItem(&pic);
@@ -31,4 +32,15 @@ redBird::redBird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, 
 void redBird::setLinearVelocity(b2Vec2 velocity)
 {
     body->SetLinearVelocity(velocity);
+}
+
+b2Vec2 redBird::getPos(){
+    b2Vec2 pos = body->GetPosition();
+    return pos;
+}
+
+b2Vec2 redBird::getVelocity()
+{
+    b2Vec2 v = body->GetLinearVelocity();
+    return v;
 }

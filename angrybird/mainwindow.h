@@ -29,12 +29,16 @@ public:
     bool eventFilter(QObject *,QEvent *event);
     void closeEvent(QCloseEvent *);
     void startGame();
+    void addBird();
 
 signals:
+    void birdStop();
     void quitGame();
 
 private slots:
     void tick();
+    void checkBird();
+    void killBird();
     void QUITSLOT();
 
 private:
@@ -42,6 +46,7 @@ private:
     QGraphicsScene *scene;
     b2World *world;
     QTimer timer;
+    QTimer checkBound;
     redBird *itemnow;
     ground *grdTemp;
     QPointF startPos;
