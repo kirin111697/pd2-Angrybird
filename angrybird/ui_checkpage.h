@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
@@ -23,6 +24,7 @@ class Ui_checkPage
 {
 public:
     QPushButton *PushBotton;
+    QGraphicsView *graphicsView;
 
     void setupUi(QWidget *checkPage)
     {
@@ -32,9 +34,14 @@ public:
         checkPage->setStyleSheet(QStringLiteral("background-image: url(:/new/bg/story-image.png);"));
         PushBotton = new QPushButton(checkPage);
         PushBotton->setObjectName(QStringLiteral("PushBotton"));
-        PushBotton->setGeometry(QRect(220, 360, 101, 61));
+        PushBotton->setGeometry(QRect(223, 350, 101, 61));
         PushBotton->setStyleSheet(QLatin1String("background-color: rgba(255, 173, 108, 64);\n"
 "font: 24pt \"Courier New\";"));
+        graphicsView = new QGraphicsView(checkPage);
+        graphicsView->setObjectName(QStringLiteral("graphicsView"));
+        graphicsView->setGeometry(QRect(0, 0, 551, 501));
+        graphicsView->raise();
+        PushBotton->raise();
 
         retranslateUi(checkPage);
 

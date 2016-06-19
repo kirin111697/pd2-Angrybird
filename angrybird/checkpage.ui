@@ -19,8 +19,8 @@
   <widget class="QPushButton" name="PushBotton">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>360</y>
+     <x>223</x>
+     <y>350</y>
      <width>101</width>
      <height>61</height>
     </rect>
@@ -33,6 +33,18 @@ font: 24pt &quot;Courier New&quot;;</string>
     <string>play</string>
    </property>
   </widget>
+  <widget class="QGraphicsView" name="graphicsView">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>551</width>
+     <height>501</height>
+    </rect>
+   </property>
+  </widget>
+  <zorder>graphicsView</zorder>
+  <zorder>PushBotton</zorder>
  </widget>
  <resources/>
  <connections/>
