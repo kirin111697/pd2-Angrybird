@@ -1,7 +1,6 @@
 #ifndef COLLCHECK_H
 #define COLLCHECK_H
 
-#include "redbird.h"
 #include "gameitem.h"
 #include <Box2D/Box2D.h>
 

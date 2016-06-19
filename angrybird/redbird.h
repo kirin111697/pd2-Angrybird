@@ -18,7 +18,6 @@ public:
     void setLinearVelocity(b2Vec2 velocity);
     b2Vec2 getPos();
     b2Vec2 getVelocity();
-    virtual void collision();
 };
 
 #endif // REDBIRD_H

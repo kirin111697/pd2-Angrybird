@@ -2,7 +2,6 @@
 
 collCheck::collCheck()
 {
-
 }
 
 void collCheck::BeginContact(b2Contact *contact)

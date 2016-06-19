@@ -28,11 +28,6 @@ yellowbird::yellowbird(float x, float y, float radius, QTimer *timer, QPixmap pi
     scene->addItem(&pic);
 }
 
-void yellowbird::collision()
-{
-    std::cout << "yellow bird hit something!" << std::endl ;
-}
-
 void yellowbird::click()
 {
     std::cout << "click yellow !" << std::endl ;

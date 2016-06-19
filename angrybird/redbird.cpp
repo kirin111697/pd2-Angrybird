@@ -44,7 +44,3 @@ b2Vec2 redBird::getVelocity()
     b2Vec2 v = body->GetLinearVelocity();
     return v;
 }
-
-void redBird::collision(){
-    std::cout << "red bird hit something!" << std::endl;
-}
