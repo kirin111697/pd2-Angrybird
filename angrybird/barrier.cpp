@@ -25,6 +25,7 @@ barrier::barrier(float x,float y,float w,float h,QTimer *timer,QPixmap pixmap,b2
     fixturedef.restitution = BARRIER_RESTITUTION;
     body->SetAngularDamping(3);
     body->CreateFixture(&fixturedef);
+    point=0;
 
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
     scene->addItem(&pic);
@@ -54,6 +55,7 @@ barrier::barrier(float x, float y, float radius, QTimer *timer, QPixmap pixmap, 
     fixturedef.restitution = BARRIER_RESTITUTION;
     body->SetAngularDamping(3);
     body->CreateFixture(&fixturedef);
+    point=0;
 
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
     scene->addItem(&pic);
@@ -62,7 +64,7 @@ barrier::barrier(float x, float y, float radius, QTimer *timer, QPixmap pixmap, 
 void barrier::collision(){
     if(flag){
         std::cout << "hit pig !" << std::endl ;
-        point+=1000;
+        point+=100;
     }
     else{
         std::cout << "collision in barrier!" << std::endl;

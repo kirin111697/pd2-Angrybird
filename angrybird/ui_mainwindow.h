@@ -71,7 +71,7 @@ public:
         graphicsView_2 = new QGraphicsView(centralWidget);
         graphicsView_2->setObjectName(QStringLiteral("graphicsView_2"));
         graphicsView_2->setGeometry(QRect(0, 0, 1024, 680));
-        graphicsView_2->setStyleSheet(QStringLiteral(""));
+        graphicsView_2->setStyleSheet(QStringLiteral("background-image: url(:/new/bg/Angry Birds Seasons/Angry Birds Seasons/HALLOWEEN2011_SKY.png);"));
         quit = new QPushButton(centralWidget);
         quit->setObjectName(QStringLiteral("quit"));
         quit->setGeometry(QRect(890, 640, 115, 32));

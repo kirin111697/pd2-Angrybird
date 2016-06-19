@@ -35,6 +35,7 @@ public:
     void closeEvent(QCloseEvent *);
     void startGame();
     void addBird();
+    void reBuild();
 
 signals:
     void birdStop();
@@ -58,6 +59,7 @@ private:
     QTimer timer;
     QTimer checkBound;
     gameitem *itemnow;
+    gameitem *pigPointer;
     ground *grdTemp;
     QPointF startPos;
     QPointF endPos;

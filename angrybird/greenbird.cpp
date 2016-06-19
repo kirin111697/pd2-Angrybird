@@ -18,10 +18,10 @@ greenbird::greenbird(float x, float y, float radius, QTimer *timer, QPixmap pixm
     dynamicShape.m_radius = radius;
     b2FixtureDef fixturedef;
     fixturedef.shape = &dynamicShape;
-    fixturedef.density = BIRD_DENSITY;
-    fixturedef.friction = BIRD_FRICTION;
+    fixturedef.density = 7.0f;
+    fixturedef.friction = 1.2;
     fixturedef.restitution = BIRD_RESTITUTION;
-    body->SetAngularDamping(3);
+    body->SetAngularDamping(10);
     body->CreateFixture(&fixturedef);
 
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
@@ -32,5 +32,5 @@ void greenbird::click()
 {
     pic.setPixmap(QPixmap(":/new/bg/greenbird_BIG.png"));
     pic.setTransformOriginPoint(pic.boundingRect().width()/2,pic.boundingRect().height()/2);
-    itemsize=QSize(2,2);
+    itemsize=QSize(3,3);
 }
