@@ -39,7 +39,7 @@ void MainWindow::showEvent(QShowEvent *){
 
 void MainWindow::startGame(){
     if (birdamt<5){
-        ground *ss = new ground(4.4,4.5,1,1.1,QPixmap(),world,scene);
+        ground *ss = new ground(4.4,4.5,0.2,1.1,QPixmap(),world,scene);
         grdTemp = ss;
         //groundList.push_back(ss);
         addBird();
@@ -68,7 +68,7 @@ void MainWindow::addBird(){
         canpress=true;
     }
     else if(birdamt==2){
-        greenbird *green = new greenbird(4.6f,7.0f,0.5f,&timer,QPixmap(":/bg/res/greenbird_SMALL.png"),world,scene);
+        greenbird *green = new greenbird(4.5f,7.0f,0.5f,&timer,QPixmap(":/bg/res/greenbird_SMALL.png"),world,scene);
         birdList.push_back(green);
         itemnow=green;
         it=&itemnow;
@@ -157,6 +157,7 @@ bool MainWindow::eventFilter(QObject *,QEvent *event){
     {
         std::cout << "Release !" << std::endl;
         endPos=static_cast<QMouseEvent*>(event)->pos();
+        std::cout << "delete ss !" << std::endl ;
         delete grdTemp;
         canpress=false;
         static_cast<redBird*>(itemnow)->setLinearVelocity(b2Vec2((startPos.x()-endPos.x())/5,(endPos.y()-startPos.y())/5));
