@@ -76,7 +76,7 @@
      </sizepolicy>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/new/bg/SLING_SHOT_01_BACK_SMALL.png);</string>
+     <string notr="true">background-image: url(:/bg/res/SLING_SHOT_01_BACK_SMALL.png);</string>
     </property>
     <property name="text">
      <string/>
@@ -92,7 +92,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/new/bg/SLING_SHOT_01_FRONT_SMALL.png);</string>
+     <string notr="true">background-image: url(:/bg/res/SLING_SHOT_01_FRONT_SMALL.png);</string>
     </property>
     <property name="text">
      <string/>
@@ -108,7 +108,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-image: url(:/new/bg/Angry Birds Seasons/Angry Birds Seasons/HALLOWEEN2011_SKY.png);</string>
+     <string notr="true">background-image: url(:/bg/res/HALLOWEEN2011_SKY.png);</string>
     </property>
    </widget>
    <widget class="QPushButton" name="quit">

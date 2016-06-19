@@ -31,7 +31,7 @@ public:
         if (checkPage->objectName().isEmpty())
             checkPage->setObjectName(QStringLiteral("checkPage"));
         checkPage->resize(550, 500);
-        checkPage->setStyleSheet(QStringLiteral("background-image: url(:/new/bg/story-image.png);"));
+        checkPage->setStyleSheet(QStringLiteral("background-image: url(:/bg/res/story-image.png);"));
         PushBotton = new QPushButton(checkPage);
         PushBotton->setObjectName(QStringLiteral("PushBotton"));
         PushBotton->setGeometry(QRect(223, 350, 101, 61));

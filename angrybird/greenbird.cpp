@@ -30,7 +30,7 @@ greenbird::greenbird(float x, float y, float radius, QTimer *timer, QPixmap pixm
 
 void greenbird::click()
 {
-    pic.setPixmap(QPixmap(":/new/bg/greenbird_BIG.png"));
+    pic.setPixmap(QPixmap(":/bg/res/greenbird_BIG.png"));
     pic.setTransformOriginPoint(pic.boundingRect().width()/2,pic.boundingRect().height()/2);
     itemsize=QSize(3,3);
 }

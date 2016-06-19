@@ -14,7 +14,7 @@
    <string/>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/new/bg/story-image.png);</string>
+   <string notr="true">background-image: url(:/bg/res/story-image.png);</string>
   </property>
   <widget class="QPushButton" name="PushBotton">
    <property name="geometry">

@@ -32,7 +32,7 @@ void MainWindow::showEvent(QShowEvent *){
 
     ui->lcdNumber->display(0);
     gameitem::setGlobalSize(QSizeF(32,21.25),this->size());
-    ground *grd = new ground(16,1.5,32,2,QPixmap(":/new/bg/HALLOWEEN2011_GROUND.png").scaled(width(),height()/6.0),world,scene);
+    ground *grd = new ground(16,1.5,32,2,QPixmap(":/bg/res/HALLOWEEN2011_GROUND.png").scaled(width(),height()/6.0),world,scene);
     reBuild();
     timer.start(100/6);
 }
@@ -54,28 +54,28 @@ void MainWindow::startGame(){
 void MainWindow::addBird(){
     //qDebug() << "added";
     if (birdamt==0){
-        yellowbird *yellow = new yellowbird(4.3f,7.0f,0.7f,&timer,QPixmap(":/new/bg/angry-bird-yellow-icon.png"),world,scene);
+        yellowbird *yellow = new yellowbird(4.3f,7.0f,0.7f,&timer,QPixmap(":/bg/res/angry-bird-yellow-icon.png"),world,scene);
         birdList.push_back(yellow);
         itemnow=yellow;
         it=&itemnow;
         canpress=true;
     }
     else if(birdamt==1){
-        whitebird *white = new whitebird(4.3f,7.0f,0.8f,&timer,QPixmap(":/new/bg/angry-bird-white-icon.png"),world,scene);
+        whitebird *white = new whitebird(4.3f,7.0f,0.8f,&timer,QPixmap(":/bg/res/angry-bird-white-icon.png"),world,scene);
         birdList.push_back(white);
         itemnow=white;
         it=&itemnow;
         canpress=true;
     }
     else if(birdamt==2){
-        greenbird *green = new greenbird(4.6f,7.0f,0.5f,&timer,QPixmap(":/new/bg/greenbird_SMALL.png"),world,scene);
+        greenbird *green = new greenbird(4.6f,7.0f,0.5f,&timer,QPixmap(":/bg/res/greenbird_SMALL.png"),world,scene);
         birdList.push_back(green);
         itemnow=green;
         it=&itemnow;
         canpress=true;
     }
     else{
-        redBird *red = new redBird(4.4f,7.0f,0.78f,&timer,QPixmap(":/new/bg/Angry_Bird_red_small.png"),world,scene);
+        redBird *red = new redBird(4.4f,7.0f,0.78f,&timer,QPixmap(":/bg/res/Angry_Bird_red_small.png"),world,scene);
         birdList.push_back(red);
         itemnow=red;
         it=&itemnow;
@@ -85,17 +85,17 @@ void MainWindow::addBird(){
 
 void MainWindow::reBuild()
 {
-    itemList.push_back(new barrier(17,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene));
-    itemList.push_back(new barrier(21,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene));
-    itemList.push_back(new barrier(19.2,7,168.0/32.0,20.0/32.0,&timer,QPixmap(":/new/bg/Angry Birds Seasons/Angry Birds Seasons/BLOCK_ROCK_1_6.png"),world,scene));
-    itemList.push_back(new barrier(14.87,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene));
-    itemList.push_back(new barrier(23.13,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene));
-    itemList.push_back(new barrier(14.87,8,83.0/32.0,20.0/32.0,&timer,QPixmap(":/new/bg/Angry Birds Seasons/Angry Birds Seasons/BLOCK_ROCK_1_4.png"),world,scene));
-    itemList.push_back(new barrier(23.13,8,83.0/32.0,20.0/32.0,&timer,QPixmap(":/new/bg/Angry Birds Seasons/Angry Birds Seasons/BLOCK_ROCK_1_4.png"),world,scene));
-    itemList.push_back(new barrier(18,9,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene));
-    itemList.push_back(new barrier(20,9,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene));
-    itemList.push_back(new barrier(19,11,83.0/32.0,20.0/32.0,&timer,QPixmap(":/new/bg/Angry Birds Seasons/Angry Birds Seasons/BLOCK_ROCK_1_4.png"),world,scene));
-    barrier *piggy = new barrier(19.2f,4.0f,1.0f,&timer,QPixmap(":/new/bg/pigy-angry-birds.png"),world,scene);
+    itemList.push_back(new barrier(17,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene));
+    itemList.push_back(new barrier(21,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene));
+    itemList.push_back(new barrier(19.2,7,168.0/32.0,20.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_6.png"),world,scene));
+    itemList.push_back(new barrier(14.87,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene));
+    itemList.push_back(new barrier(23.13,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene));
+    itemList.push_back(new barrier(14.87,8,83.0/32.0,20.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4.png"),world,scene));
+    itemList.push_back(new barrier(23.13,8,83.0/32.0,20.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4.png"),world,scene));
+    itemList.push_back(new barrier(18,9,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene));
+    itemList.push_back(new barrier(20,9,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene));
+    itemList.push_back(new barrier(19,11,83.0/32.0,20.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4.png"),world,scene));
+    barrier *piggy = new barrier(19.2f,4.0f,1.0f,&timer,QPixmap(":/bg/res/pigy-angry-birds.png"),world,scene);
     pigPointer=piggy;
     itemList.push_back(piggy);
 }

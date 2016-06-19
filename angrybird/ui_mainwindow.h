@@ -63,15 +63,15 @@ public:
         slingShot1->setGeometry(QRect(150, 480, 25, 128));
         sizePolicy.setHeightForWidth(slingShot1->sizePolicy().hasHeightForWidth());
         slingShot1->setSizePolicy(sizePolicy);
-        slingShot1->setStyleSheet(QStringLiteral("background-image: url(:/new/bg/SLING_SHOT_01_BACK_SMALL.png);"));
+        slingShot1->setStyleSheet(QStringLiteral("background-image: url(:/bg/res/SLING_SHOT_01_BACK_SMALL.png);"));
         slingShot2 = new QLabel(centralWidget);
         slingShot2->setObjectName(QStringLiteral("slingShot2"));
         slingShot2->setGeometry(QRect(133, 478, 26, 78));
-        slingShot2->setStyleSheet(QStringLiteral("background-image: url(:/new/bg/SLING_SHOT_01_FRONT_SMALL.png);"));
+        slingShot2->setStyleSheet(QStringLiteral("background-image: url(:/bg/res/SLING_SHOT_01_FRONT_SMALL.png);"));
         graphicsView_2 = new QGraphicsView(centralWidget);
         graphicsView_2->setObjectName(QStringLiteral("graphicsView_2"));
         graphicsView_2->setGeometry(QRect(0, 0, 1024, 680));
-        graphicsView_2->setStyleSheet(QStringLiteral("background-image: url(:/new/bg/Angry Birds Seasons/Angry Birds Seasons/HALLOWEEN2011_SKY.png);"));
+        graphicsView_2->setStyleSheet(QStringLiteral("background-image: url(:/bg/res/HALLOWEEN2011_SKY.png);"));
         quit = new QPushButton(centralWidget);
         quit->setObjectName(QStringLiteral("quit"));
         quit->setGeometry(QRect(890, 640, 115, 32));

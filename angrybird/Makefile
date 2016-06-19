@@ -601,17 +601,20 @@ compiler_rcc_make_all: qrc_resource.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) qrc_resource.cpp
 qrc_resource.cpp: resource.qrc \
-		pigy-angry-birds.png \
-		HALLOWEEN2011_GROUND.png \
-		SLING_SHOT_01_FRONT_SMALL.png \
-		angry-bird-white-icon.png \
-		story-image.png \
-		greenbird_BIG.png \
-		Angry_Bird_red_small.png \
-		angry-bird-yellow-icon.png \
-		SLING_SHOT_01_BACK_SMALL.png \
-		BLOCK_ROCK_1_4_2.png \
-		greenbird_SMALL.png
+		res/pigy-angry-birds.png \
+		res/angry-bird-white-icon.png \
+		res/BLOCK_ROCK_1_6.png \
+		res/HALLOWEEN2011_GROUND.png \
+		res/SLING_SHOT_01_FRONT_SMALL.png \
+		res/story-image.png \
+		res/greenbird_BIG.png \
+		res/Angry_Bird_red_small.png \
+		res/angry-bird-yellow-icon.png \
+		res/HALLOWEEN2011_SKY.png \
+		res/BLOCK_ROCK_1_4.png \
+		res/SLING_SHOT_01_BACK_SMALL.png \
+		res/BLOCK_ROCK_1_4_2.png \
+		res/greenbird_SMALL.png
 	/Applications/QT/5.6/clang_64/bin/rcc -name resource resource.qrc -o qrc_resource.cpp
 
 compiler_moc_header_make_all: moc_mainwindow.cpp moc_gameitem.cpp moc_checkpage.cpp
