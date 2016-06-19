@@ -605,6 +605,7 @@ qrc_resource.cpp: resource.qrc \
 		HALLOWEEN2011_GROUND.png \
 		SLING_SHOT_01_FRONT_SMALL.png \
 		angry-bird-white-icon.png \
+		story-image.png \
 		greenbird_BIG.png \
 		Angry_Bird_red_small.png \
 		angry-bird-yellow-icon.png \
@@ -663,6 +664,8 @@ moc_mainwindow.cpp: /Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Header
 		Box2D/Dynamics/Joints/b2WheelJoint.h \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QMouseEvent \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/QVector \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		gameitem.h \
 		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
 		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
@@ -782,6 +785,8 @@ moc_checkpage.cpp: /Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers
 		Box2D/Dynamics/Joints/b2WheelJoint.h \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QMouseEvent \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/QVector \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		gameitem.h \
 		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
 		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
@@ -874,6 +879,8 @@ main.o: main.cpp mainwindow.h \
 		Box2D/Dynamics/Joints/b2WheelJoint.h \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QMouseEvent \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/QVector \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		gameitem.h \
 		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
 		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
@@ -947,6 +954,8 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		Box2D/Dynamics/Joints/b2WheelJoint.h \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QMouseEvent \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/QVector \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		gameitem.h \
 		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
 		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
@@ -1173,6 +1182,8 @@ checkpage.o: checkpage.cpp checkpage.h \
 		Box2D/Dynamics/Joints/b2WheelJoint.h \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/QMouseEvent \
 		/Applications/QT/5.6/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/QVector \
+		/Applications/QT/5.6/clang_64/lib/QtCore.framework/Headers/qvector.h \
 		gameitem.h \
 		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
 		/Applications/QT/5.6/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \

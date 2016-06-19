@@ -28,10 +28,13 @@ public:
     {
         if (checkPage->objectName().isEmpty())
             checkPage->setObjectName(QStringLiteral("checkPage"));
-        checkPage->resize(400, 300);
+        checkPage->resize(550, 500);
+        checkPage->setStyleSheet(QStringLiteral("background-image: url(:/new/bg/story-image.png);"));
         PushBotton = new QPushButton(checkPage);
         PushBotton->setObjectName(QStringLiteral("PushBotton"));
-        PushBotton->setGeometry(QRect(140, 170, 115, 32));
+        PushBotton->setGeometry(QRect(220, 360, 101, 61));
+        PushBotton->setStyleSheet(QLatin1String("background-color: rgba(255, 173, 108, 64);\n"
+"font: 24pt \"Courier New\";"));
 
         retranslateUi(checkPage);
 
