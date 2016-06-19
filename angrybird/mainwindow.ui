@@ -137,12 +137,23 @@
      <string>Restart</string>
     </property>
    </widget>
+   <widget class="QLCDNumber" name="lcdNumber">
+    <property name="geometry">
+     <rect>
+      <x>770</x>
+      <y>20</y>
+      <width>221</width>
+      <height>71</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>graphicsView_2</zorder>
    <zorder>slingShot1</zorder>
    <zorder>graphicsView</zorder>
    <zorder>slingShot2</zorder>
    <zorder>quit</zorder>
    <zorder>restart</zorder>
+   <zorder>lcdNumber</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

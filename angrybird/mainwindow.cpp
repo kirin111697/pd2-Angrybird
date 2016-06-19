@@ -15,8 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,SIGNAL(birdStop()),this,SLOT(killBird()));
     connect(this,SIGNAL(quitGame()),this,SLOT(QUITSLOT()));
     world = new b2World(b2Vec2(0.0f, -9.8f));
-    //countScore = new collCheck;
-    //world->SetContactListener(countScore);
+    countScore = new collCheck;
+    world->SetContactListener(countScore);
 }
 
 MainWindow::~MainWindow()
@@ -41,31 +41,34 @@ void MainWindow::startGame(){
     if (birdamt<5){
         ground *ss = new ground(4.4,4.5,1,1.1,QPixmap(),world,scene);
         grdTemp = ss;
+        //groundList.push_back(ss);
         addBird();
+        birdamt++;
     }
     else{
-        this->close();
+        canpress=false;
+        skill=false;
     }
-    birdamt++;
 }
 
 void MainWindow::addBird(){
+    //qDebug() << "added";
     if (birdamt==0){
-        yellowbird *yellow = new yellowbird(4.3f,7.0f,0.6f,&timer,QPixmap(":/new/bg/angry-bird-yellow-icon.png"),world,scene);
+        yellowbird *yellow = new yellowbird(4.3f,7.0f,0.7f,&timer,QPixmap(":/new/bg/angry-bird-yellow-icon.png"),world,scene);
         birdList.push_back(yellow);
         itemnow=yellow;
         it=&itemnow;
         canpress=true;
     }
     else if(birdamt==1){
-        whitebird *white = new whitebird(4.3f,7.0f,0.63f,&timer,QPixmap(":/new/bg/angry-bird-white-icon.png"),world,scene);
+        whitebird *white = new whitebird(4.3f,7.0f,0.8f,&timer,QPixmap(":/new/bg/angry-bird-white-icon.png"),world,scene);
         birdList.push_back(white);
         itemnow=white;
         it=&itemnow;
         canpress=true;
     }
     else if(birdamt==2){
-        greenbird *green = new greenbird(4.3f,7.0f,0.58f,&timer,QPixmap(":/new/bg/greenbird_SMALL.png"),world,scene);
+        greenbird *green = new greenbird(4.6f,7.0f,0.5f,&timer,QPixmap(":/new/bg/greenbird_SMALL.png"),world,scene);
         birdList.push_back(green);
         itemnow=green;
         it=&itemnow;
@@ -84,6 +87,7 @@ void MainWindow::killBird(){
     delete (*it);
     std::cout << "KILL BIRD !" << std::endl;
     birdList.clear();
+    //groundList.clear();
     //itemList.clear();
     startGame();
 }
@@ -154,6 +158,7 @@ void MainWindow::tick()
 {
     world->Step(1.0/60.0,6,2);
     scene->update();
+    tempScore=1;
 }
 
 void MainWindow::QUITSLOT()
@@ -163,17 +168,25 @@ void MainWindow::QUITSLOT()
 
 void MainWindow::on_restart_clicked()
 {
+    killBird();
     for(int i=0;i < itemList.size();++i){
 
         //scene->removeItem();
-        delete itemList[i];
+        it=&itemList[i];
+        delete (*it);
     }
     itemList.clear();
+    /*for(it=itemList.begin();it!=itemList.end();++it)
+    {
+        delete(*it);
+        itemList.erase(it);
+    }*/
     itemList.push_back(new barrier(21,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene));
     itemList.push_back(new barrier(17,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/new/bg/BLOCK_ROCK_1_4_2.png"),world,scene));
     itemList.push_back(new barrier(19.2,7,168.0/32.0,20.0/32.0,&timer,QPixmap(":/new/bg/Angry Birds Seasons/Angry Birds Seasons/BLOCK_ROCK_1_6.png"),world,scene));
     itemList.push_back(new barrier(19.2f,4.0f,1.0f,&timer,QPixmap(":/new/bg/pigy-angry-birds.png"),world,scene));
     birdamt=0;
+    canpress=false;
     startGame();
 }
 

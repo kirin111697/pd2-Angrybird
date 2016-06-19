@@ -5,7 +5,7 @@
 #include "redbird.h"
 #include <iostream>
 
-class greenbird:public redBird
+class greenbird:public gameitem
 {
 public:
     greenbird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);

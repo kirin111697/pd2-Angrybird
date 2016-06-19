@@ -62,6 +62,7 @@ private:
     QPointF startPos;
     QPointF endPos;
     collCheck *countScore;
+    int tempScore;
     bool canpress;
     bool skill;
     int birdamt;

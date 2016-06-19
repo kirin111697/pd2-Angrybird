@@ -1,7 +1,7 @@
 #include "yellowbird.h"
 
 yellowbird::yellowbird(float x, float y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene)
-  :redBird(x, y, radius, timer, pixmap, world, scene)
+  :gameitem(world)
 {
     pic.setPixmap(pixmap);
     pic.setTransformOriginPoint(pic.boundingRect().width()/2,pic.boundingRect().height()/2);

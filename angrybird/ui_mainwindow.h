@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
@@ -32,6 +33,7 @@ public:
     QGraphicsView *graphicsView_2;
     QPushButton *quit;
     QPushButton *restart;
+    QLCDNumber *lcdNumber;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -76,6 +78,9 @@ public:
         restart = new QPushButton(centralWidget);
         restart->setObjectName(QStringLiteral("restart"));
         restart->setGeometry(QRect(750, 640, 115, 32));
+        lcdNumber = new QLCDNumber(centralWidget);
+        lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
+        lcdNumber->setGeometry(QRect(770, 20, 221, 71));
         MainWindow->setCentralWidget(centralWidget);
         graphicsView_2->raise();
         slingShot1->raise();
@@ -83,6 +88,7 @@ public:
         slingShot2->raise();
         quit->raise();
         restart->raise();
+        lcdNumber->raise();
 
         retranslateUi(MainWindow);
 
