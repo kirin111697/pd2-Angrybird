@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     canpress(false),
     skill(false),
+    forArrow(false),
     birdamt(0),
     tempScore(0),
     score(-300)
@@ -35,11 +36,28 @@ void MainWindow::showEvent(QShowEvent *){
     ground *grd = new ground(16,1.5,32,2,QPixmap(":/bg/res/HALLOWEEN2011_GROUND.png").scaled(width(),height()/6.0),world,scene);
     reBuild();
     timer.start(100/6);
+
+    arrow = new QGraphicsPixmapItem;
+    arrow->setPixmap(QPixmap(":/bg/res/arrow_316.48351648352.png").scaled(200, 18, Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
+    arrow->setTransformOriginPoint(arrow->pixmap().width()/2, arrow->pixmap().height()/2);
+    arrow->setTransformationMode(Qt::SmoothTransformation);
+    arrow->setVisible(false);
+    scene->addItem(arrow);
+
+    result = new QGraphicsPixmapItem;
+    result->setPixmap(QPixmap(":/bg/res/pass.PNG"));
+    result->setPos(200,250);
+    result->setVisible(false);
+    scene->addItem(result);
 }
 
 void MainWindow::startGame(){
     if (birdamt<5){
-        ground *ss = new ground(4.4,4.5,0.2,1.1,QPixmap(),world,scene);
+        ground *ss;
+        if(birdamt==2)
+            ss = new ground(4.4,4.5,0.2,1.1,QPixmap(),world,scene);
+        else
+            ss = new ground(4.3,4.5,0.2,1.1,QPixmap(),world,scene);
         grdTemp = ss;
         //groundList.push_back(ss);
         addBird();
@@ -48,6 +66,15 @@ void MainWindow::startGame(){
     else{
         canpress=false;
         skill=false;
+        forArrow=false;
+        if (score >= 10000){
+            result->setPixmap(QPixmap(":/bg/res/pass.PNG"));
+            result->setVisible(true);
+        }
+        else{
+            result->setPixmap(QPixmap(":/bg/res/fail.PNG"));
+            result->setVisible(true);
+        }
     }
 }
 
@@ -85,17 +112,17 @@ void MainWindow::addBird(){
 
 void MainWindow::reBuild()
 {
-    itemList.push_back(new barrier(17,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene));
-    itemList.push_back(new barrier(21,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene));
-    itemList.push_back(new barrier(19.2,7,168.0/32.0,20.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_6.png"),world,scene));
-    itemList.push_back(new barrier(14.87,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene));
-    itemList.push_back(new barrier(23.13,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene));
-    itemList.push_back(new barrier(14.87,8,83.0/32.0,20.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4.png"),world,scene));
-    itemList.push_back(new barrier(23.13,8,83.0/32.0,20.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4.png"),world,scene));
-    itemList.push_back(new barrier(18,9,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene));
-    itemList.push_back(new barrier(20,9,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene));
-    itemList.push_back(new barrier(19,11,83.0/32.0,20.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4.png"),world,scene));
-    barrier *piggy = new barrier(19.2f,4.0f,1.0f,&timer,QPixmap(":/bg/res/pigy-angry-birds.png"),world,scene);
+    itemList.push_back(new barrier(17,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene,1));
+    itemList.push_back(new barrier(21,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene,1));
+    itemList.push_back(new barrier(19.2,7,168.0/32.0,20.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_6.png"),world,scene,3));
+    itemList.push_back(new barrier(14.87,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene,1));
+    itemList.push_back(new barrier(23.13,5,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene,1));
+    itemList.push_back(new barrier(14.87,8,83.0/32.0,20.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4.png"),world,scene,2));
+    itemList.push_back(new barrier(23.13,8,83.0/32.0,20.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4.png"),world,scene,2));
+    itemList.push_back(new barrier(18,9,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene,1));
+    itemList.push_back(new barrier(20,9,20.0/32.0,83.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4_2.png"),world,scene,1));
+    itemList.push_back(new barrier(19,11,83.0/32.0,20.0/32.0,&timer,QPixmap(":/bg/res/BLOCK_ROCK_1_4.png"),world,scene,2));
+    barrier *piggy = new barrier(19.2f,4.0f,1.0f,&timer,QPixmap(":/bg/res/pigy-angry-birds.png"),world,scene,4);
     pigPointer=piggy;
     itemList.push_back(piggy);
 }
@@ -147,14 +174,22 @@ bool MainWindow::eventFilter(QObject *,QEvent *event){
     {
         startPos=static_cast<QMouseEvent*>(event)->pos();
         std::cout << "Press !" << std::endl ;
+        forArrow=true;
     }
     if(event->type() == QEvent::MouseMove)
     {
-        /* TODO : add your code here */
-        //std::cout << "Move !" << std::endl ;
+        if (forArrow==true){
+            QPointF temp = static_cast<QMouseEvent*>(event)->pos();
+            arrow->resetTransform();
+            arrow->setPos(QPointF(50,500));
+            arrow->setRotation(qAtan2(startPos.y()-temp.y(),startPos.x()-temp.x())*180/3.14159);
+            arrow->setScale(qSqrt(qPow(temp.y()-startPos.y(),2) + qPow(temp.x()-startPos.x(), 2))/400);
+            arrow->setVisible(true);
+        }
     }
     if(event->type() == QEvent::MouseButtonRelease)
     {
+        arrow->setVisible(false);
         std::cout << "Release !" << std::endl;
         endPos=static_cast<QMouseEvent*>(event)->pos();
         std::cout << "delete ss !" << std::endl ;
@@ -163,6 +198,7 @@ bool MainWindow::eventFilter(QObject *,QEvent *event){
         static_cast<redBird*>(itemnow)->setLinearVelocity(b2Vec2((startPos.x()-endPos.x())/5,(endPos.y()-startPos.y())/5));
         checkBound.start(100/6);
         skill=true;
+        forArrow=false;
     }
     return false;
 }
@@ -195,6 +231,7 @@ void MainWindow::QUITSLOT()
 
 void MainWindow::on_restart_clicked()
 {
+    result->setVisible(false);
     if (birdamt<5){
         killBird();
     }
